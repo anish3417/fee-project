@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location Check</title>  
+</head>
+<style>
+    .container{
+       margin-left: 700px;
+    }
+</style>
+
+<body>
+
+    <div class="container">
+        <h1>Welcome</h1>
+        <br>
+        <button onclick="checkLocation()">Check Location</button>
+    </div>
+
+    <script>
+        
+        const database = [
+            { username: "username", password: "password" }
+        ];
+
+        function checkLocation() {
+            const location = prompt("Please enter your location:");
+            
+            if (location && (location.toLowerCase() === "punjab" || location.toLowerCase() === "haryana" || location.toLowerCase() === "chandigarh")) {
+                const username = prompt("Please enter your username:");
+                const password = prompt("Please enter your password:");
+                
+                if (isUserValid(username, password)) {
+                    window.location.href = "https://www.google.com/maps/place/" + location;
+                } else {
+                    alert("Wrong credentials.");
+                }
+            } else {
+                alert("Access denied.");
+            }
+        }
+
+        function isUserValid(username, password) {
+            for (let i = 0; i < database.length; i++) {
+                if (database[i].username === username && database[i].password === password) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    </script>
+</body>
+</html>
